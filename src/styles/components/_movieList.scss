@@ -1,19 +1,19 @@
 .movie-card {
-    width: 10em;
-    height: auto;
-    margin-top: 1em;
-    margin-right: 1em;
-    margin-left: 1em;
+  width: 10em;
+  height: auto;
+  margin-top: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
 }
 
 .card-img-top {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .text-justify {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }

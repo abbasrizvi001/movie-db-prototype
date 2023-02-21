@@ -1,5 +1,18 @@
 .movie-list-horizontal {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.search-bar-div {
+  display: flex;
+  height: 10em;
+  background-color: aqua;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar {
+    width: 55%;
 }

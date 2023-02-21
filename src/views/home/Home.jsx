@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "material-ui-search-bar";
 import { Link } from "react-router-dom";
 import { MovieList } from "../../components/movie-list/MovieList";
+import Container from "@material-ui/core/Container";
+import AppHeader from "../../components/app-header/AppHeader";
+import { Box } from "@mui/system";
 
 export function Home() {
   const [movieData, setMovieData] = useState([]);
@@ -24,28 +27,34 @@ export function Home() {
 
   return (
     <>
-      <SearchBar
-        onRequestSearch={() => onClick()}
-        placeholder="Search for a movie... e.g. The Dark Knight"
-        onChange={(newValue) => setSearchQuery(newValue)}
-        autoFocus
-      />
-      <div className="movie-list-horizontal">
-        {movieData.map(
-          ({ title, poster_path, overview, vote_average, id }, index) => {
-            let posterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
-            return (
-              <MovieList
-                key={id + index}
-                title={title}
-                poster={posterUrl}
-                overview={overview}
-                rating={vote_average}
-              />
-            );
-          }
-        )}
+      <AppHeader />
+      <div className="search-bar-div">
+        <SearchBar
+          className="search-bar"
+          onRequestSearch={() => onClick()}
+          placeholder="Search for a movie..."
+          onChange={(newValue) => setSearchQuery(newValue)}
+          autoFocus
+        />
       </div>
+      <Container component="main" maxWidth="lg">
+        <div className="movie-list-horizontal">
+          {movieData.map(
+            ({ title, poster_path, overview, vote_average, id }, index) => {
+              let posterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+              return (
+                <MovieList
+                  key={id + index}
+                  title={title}
+                  poster={posterUrl}
+                  overview={overview}
+                  rating={vote_average}
+                />
+              );
+            }
+          )}
+        </div>
+      </Container>
     </>
   );
 }

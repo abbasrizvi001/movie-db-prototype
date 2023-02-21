@@ -1,14 +1,19 @@
 .movie-card {
-    margin-left: 10px;
-    margin-bottom: 10px;
-    max-width: 300px;
-    width: 300px;
+    width: 10em;
+    height: auto;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-left: 1em;
 }
 
-.movie-card.card {
-    height: 450px;
+.card-img-top {
+    border-radius: 10px;
 }
 
-.card-footer-badge {
-    font-size: 1rem;
+.text-justify {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }

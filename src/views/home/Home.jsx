@@ -24,6 +24,12 @@ export function Home() {
 
   return (
     <>
+      <SearchBar
+        onRequestSearch={() => onClick()}
+        placeholder="Search for a movie... e.g. The Dark Knight"
+        onChange={(newValue) => setSearchQuery(newValue)}
+        autoFocus
+      />
       <div className="movie-list-horizontal">
         {movieData.map(
           ({ title, poster_path, overview, vote_average, id }, index) => {
@@ -40,12 +46,6 @@ export function Home() {
           }
         )}
       </div>
-      <SearchBar
-        onRequestSearch={() => onClick()}
-        placeholder="Search for a movie... e.g. The Dark Knight"
-        onChange={(newValue) => setSearchQuery(newValue)}
-        autoFocus
-      />
     </>
   );
 }

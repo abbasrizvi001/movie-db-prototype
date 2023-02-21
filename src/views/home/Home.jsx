@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "material-ui-search-bar";
 import { Link } from "react-router-dom";
+import { MovieList } from "../../components/movie-list/MovieList";
 
 export function Home() {
   const [movieData, setMovieData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/popular?api_key=36fa93a60bfe6f4442c5db70e291c96c&language=en-US&page=1"
     )
       .then((response) => response.json())
-      .then((data) => setMovieData(data));
+      .then((data) => setMovieData(data.results));
   }, []);
 
   const onClick = () => {
@@ -23,13 +24,22 @@ export function Home() {
 
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/movie-info">Movie Info</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="movie-list-horizontal">
+        {movieData.map(
+          ({ title, poster_path, overview, vote_average, id }, index) => {
+            let posterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+            return (
+              <MovieList
+                key={id + index}
+                title={title}
+                poster={posterUrl}
+                overview={overview}
+                rating={vote_average}
+              />
+            );
+          }
+        )}
+      </div>
       <SearchBar
         onRequestSearch={() => onClick()}
         placeholder="Search for a movie... e.g. The Dark Knight"

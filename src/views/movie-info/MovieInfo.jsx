@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import AppHeader from "../../components/app-header/AppHeader";
@@ -6,7 +6,7 @@ import { MovieList } from "../../components/movie-list/MovieList";
 import ReactPaginate from "react-paginate";
 
 export function MovieInfo() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [topTenResults, setTopTenResults] = useState([]);
   const { state } = useLocation();
   const { response, searchQuery } = state;
   const {
@@ -15,11 +15,14 @@ export function MovieInfo() {
     total_results: totalResults,
   } = response;
 
-  const topTenResults = results.slice(0, 10);
+  useEffect(() => {
+    setTopTenResults(results.slice(0, 10))
+  }, [results]);
 
-  function handlePageClick({ selected: selectedPage }) {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=36fa93a60bfe6f4442c5db70e291c96c&language=en-US&query=${searchQuery}&page=${searchQuery}&include_adult=false`;
-    setCurrentPage(selectedPage);
+  async function handlePageClick({ selected: selectedPage }) {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=36fa93a60bfe6f4442c5db70e291c96c&language=en-US&query=${searchQuery}&page=${selectedPage}&include_adult=false`;
+    const response = await fetch(url).then((response) => response.json())
+    setTopTenResults(response.results.slice(0, 10))
   }
 
   return (
@@ -50,7 +53,6 @@ export function MovieInfo() {
           pageCount={totalPages}
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
-          pageRangeDisplayed={5}
           renderOnZeroPageCount={null}
         />
       </Container>

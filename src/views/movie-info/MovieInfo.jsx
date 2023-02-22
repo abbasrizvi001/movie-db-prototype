@@ -16,13 +16,15 @@ export function MovieInfo() {
   } = response;
 
   useEffect(() => {
-    setTopTenResults(results.slice(0, 10))
+    setTopTenResults(results.slice(0, 10));
   }, [results]);
 
   async function handlePageClick({ selected: selectedPage }) {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=36fa93a60bfe6f4442c5db70e291c96c&language=en-US&query=${searchQuery}&page=${selectedPage}&include_adult=false`;
-    const response = await fetch(url).then((response) => response.json())
-    setTopTenResults(response.results.slice(0, 10))
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=36fa93a60bfe6f4442c5db70e291c96c&language=en-US&query=${searchQuery}&page=${
+      selectedPage + 1
+    }&include_adult=false`;
+    const response = await fetch(url).then((response) => response.json());
+    setTopTenResults(response.results.slice(0, 10));
   }
 
   return (
@@ -53,6 +55,7 @@ export function MovieInfo() {
           pageCount={totalPages}
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
+          activeClassName={"pagination__link--active"}
           renderOnZeroPageCount={null}
         />
       </Container>

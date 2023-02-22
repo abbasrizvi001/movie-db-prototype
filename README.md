@@ -1,12 +1,9 @@
 # Getting Started 
 
-After cloning the repo
+After cloning the repo, run the following:
 ### `npm install`
 
-
-## Available Scripts
-
-In the project directory, you can run:
+Once finished, you can start a local instance with:
 
 ### `npm start`
 

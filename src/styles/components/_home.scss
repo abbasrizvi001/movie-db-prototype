@@ -7,12 +7,18 @@
 .search-bar-div {
   display: flex;
   height: 10em;
-  background-color: aqua;
+  background: rgb(18, 9, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(18, 9, 180, 1) 0%,
+    rgba(58, 9, 121, 1) 35%,
+    rgba(156, 39, 176, 1) 100%
+  );
   overflow: hidden;
   align-items: center;
   justify-content: center;
 }
 
 .search-bar {
-    width: 55%;
+  width: 55%;
 }

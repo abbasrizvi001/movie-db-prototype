@@ -36,18 +36,24 @@ export const MovieItem = ({ title, poster, overview, date }) => {
           </Button>
         )}
       </div>
-      <h6 className="card-title" style={{ fontWeight: "bold" }}>
-        {title}
-      </h6>
-      <p
-        className="card-date"
-        style={{ fontSize: "14px", fontStyle: "italic", marginBottom: "auto" }}
-      >
-        {date}
-      </p>
-      <p className="card-text" style={{ fontSize: "12px" }}>
-        {overview}
-      </p>
+      <div className="card-body">
+        <h6 className="card-title" style={{ fontWeight: "bold" }}>
+          {title}
+        </h6>
+        <p
+          className="card-date"
+          style={{
+            fontSize: "14px",
+            fontStyle: "italic",
+            marginBottom: "auto",
+          }}
+        >
+          {date}
+        </p>
+        <p className="card-text" style={{ fontSize: "12px" }}>
+          {overview}
+        </p>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import AppHeader from "../../components/app-header/AppHeader";
-import { MovieList } from "../../components/movie-list/MovieList";
+import { MovieItem } from "../../components/movie-item/MovieItem";
 import ReactPaginate from "react-paginate";
 
 export function MovieInfo() {
@@ -13,6 +13,7 @@ export function MovieInfo() {
     results,
     total_pages: totalPages,
     total_results: totalResults,
+    release_date: date
   } = response;
 
   useEffect(() => {
@@ -34,21 +35,21 @@ export function MovieInfo() {
         <h3>Your search results for: "{searchQuery}"</h3>
         <div className="movie-list-horizontal">
           {topTenResults.map(
-            ({ title, poster_path, overview, vote_average, id }, index) => {
+            ({ title, poster_path, overview, release_date: date, id }, index) => {
               let posterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
               return (
-                <MovieList
+                <MovieItem
                   key={id + index}
                   title={title}
                   poster={posterUrl}
                   overview={overview}
-                  rating={vote_average}
+                  date={date}
                 />
               );
             }
           )}
         </div>
-        <h5>Total number of results: {totalResults}</h5>
+        <h5 style={{ marginTop: "2em" }}>Total number of results: {totalResults}</h5>
         <ReactPaginate
           previousLabel="← Previous"
           nextLabel="Next →"

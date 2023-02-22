@@ -6,18 +6,21 @@
   margin-left: 0.5em;
 }
 
-.card-img-top {
-  border-radius: 10px;
-}
-
-.card-title {
-  font-weight: bold;
-}
-
-.text-justify {
+.card-text {
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+.container {
+  display: inline-block;
+  position: relative;
+}
+
+.container .btn {
+  position: absolute;
+  bottom: 90%;
+  left: 70%;
 }
